@@ -29,7 +29,103 @@ Before you begin, ensure you have:
    sudo rm index.html
    sudo nano index.php
    ```
-   Add your PHP code in `index.php` to display a basic webpage.
+Add your PHP code in `index.php` to display a basic webpage.
+
+This HTML and PHP code snippet represents a basic web form that collects user input (name and email) and inserts it into a MySQL database hosted on Amazon RDS. Let's break down the code and provide an overview of its functionality:
+
+### HTML Form (index.php)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('images/2.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+    <br><br><br><br>
+    <div class="container">
+        <div class="jumbotron vertical-center">
+            <form method="post">
+                <div class="form-group">
+                    <label for="firstname">Name:</label>
+                    <input type="text" class="form-control" name="firstname">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" class="form-control" name="email">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+- This HTML form includes Bootstrap styling for layout.
+- It contains input fields for `Name` (firstname) and `Email`.
+- On form submission (`POST` method), it sends data to the same page (`action` is not needed as it defaults to the current URL).
+
+### PHP Script (index.php - Below the HTML form)
+
+```php
+<?php
+// Retrieve form data
+$firstname = $_POST['firstname'];
+$email = $_POST['email'];
+
+// Database connection details
+$servername = "intelli.coghw13fheqo.us-east-2.rds.amazonaws.com";
+$username = "intel";
+$password = "intel123";
+$dbname = "intel";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if form is submitted
+if (isset($_POST['firstname']) && isset($_POST['email'])) {
+    // SQL query to insert data into database
+    $sql = "INSERT INTO data (firstname, email) VALUES ('$firstname', '$email')";
+
+    // Execute SQL query
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Close database connection
+$conn->close();
+?>
+```
+
+- This PHP script handles the form submission.
+- It retrieves the `firstname` and `email` values from `$_POST`.
+- Establishes a connection to the MySQL database using `mysqli`.
+- If form data is submitted (`isset($_POST['firstname']) && isset($_POST['email'])`), it constructs an SQL query to insert the data into the `data` table.
+- Executes the SQL query and displays a success or error message accordingly.
+- Closes the database connection after processing.
+
+### Summary
+
+This code snippet demonstrates a simple web form that captures user input and inserts it into an Amazon RDS MySQL database. Ensure that the database connection details (`$servername`, `$username`, `$password`, `$dbname`) are correct and match your RDS instance configuration. Additionally, replace `'images/2.png'` with the path to your desired background image.
+
+Make sure to handle form validation, error handling, and security considerations (e.g., SQL injection prevention) based on your application requirements.
 
 ### Step 3: Setting Up RDS Database
 
