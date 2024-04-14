@@ -170,7 +170,7 @@ Make sure to handle form validation, error handling, and security considerations
 ### Conclusion
 
 Congratulations! You've successfully deployed a multi-tier website on AWS using EC2 for web hosting, RDS for database management, and auto-scaling for high availability. Feel free to customize and expand upon this setup based on your project requirements.
-
+---
 ![Alt text](html page.jpg)
 
 ### Additional References
