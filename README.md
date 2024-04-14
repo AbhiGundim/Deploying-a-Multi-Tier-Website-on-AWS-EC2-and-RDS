@@ -1,3 +1,5 @@
+![Alt text] (html page.jpg)
+---
 ## Deploying a Multi-Tier Website Using AWS EC2 and RDS
 
 In this tutorial, we'll cover the step-by-step process of deploying a multi-tier website on AWS using Amazon EC2 for hosting the website and Amazon RDS for the MySQL database. We'll also set up auto-scaling for high availability and create a load balancer to distribute traffic across multiple instances.
@@ -170,8 +172,6 @@ Make sure to handle form validation, error handling, and security considerations
 ### Conclusion
 
 Congratulations! You've successfully deployed a multi-tier website on AWS using EC2 for web hosting, RDS for database management, and auto-scaling for high availability. Feel free to customize and expand upon this setup based on your project requirements.
----
-![Alt text](html page.jpg)
 
 ### Additional References
 
